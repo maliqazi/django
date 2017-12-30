@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit User {{edit_user.id}}</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'rest_users/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <h1>Edit User {{edit_user.id}}</h1>
+    <form action="/users/update/" method="POST">
+      {% csrf_token %}
+      First name: <input type="text" name="first_name" value={{edit_user.first_name}}>
+      Last name: <input type="text" name="last_name" value={{edit_user.last_name}}>
+      Email: <input type="text" name="email" value={{edit_user.email}}>
+      <input type="hidden" name="id" value={{edit_user.id}}>
+      <input type="submit" name="submit" value="Update">
+    </form>
+    <a href="/users/{{edit_user.id}}/">Show</a> | <a href="/users">Go Back</a> |
+    <a href="/users">Home</a>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>
