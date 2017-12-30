@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add a student to all bootcamp courses</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'courses_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <h2>Add a new course</h2>
+    <form action="/courses/add/" method="post">
+      {% csrf_token %}
+      Name: <input type="text" name="course_name" class="course_name">
+      Description: <textarea name="desc" cols="20" rows="4" class="desc"></textarea>
+      <input type="submit" name="submit" class="submit" value="Add">
+    </form>
+    <h2>Courses</h2>
+    <table>
+      <tr>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th>Date Added</th>
+        <th>Actions</th>
+      </tr>
+    {% for course in courses %}
+      <tr>
+        <td>{{course.course_name}}</td>
+        <td>{{course.description}}</td>
+        <td>{{course.created_at}}</td>
+        <td>
+          <a href="/courses/destroy/{{course.id}}">Remove</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </table>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>

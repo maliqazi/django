@@ -1,0 +1,25 @@
+* {
+  font-family: courier;
+}
+
+.course_name, .desc {
+  display: block;
+}
+
+th {
+  column-width: 150px;
+  text-align: left;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+table {
+  border-style: solid;
+}
+
+table td {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
