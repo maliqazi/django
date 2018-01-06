@@ -1,0 +1,63 @@
+*{
+    font-family: courier;
+}
+div {
+  display: block;
+}
+
+#scroll3 {
+  border-style: solid;
+  border-width: 1pt;
+  overflow-y:scroll;
+  width: 300px;
+  height: 150px;
+}
+
+#scroll3 a {
+  display: block;
+}
+
+form *{
+  display: block;
+}
+
+.review {
+  border-style: solid;
+  border-width: 1pt;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  width: 250px;
+  display: inline-block;
+}
+
+.book, .addreview {
+  display: inline-block;
+  width: 400px;
+  vertical-align: top;
+}
+
+.disp_stars{
+  display: inline;
+  width: 10px;
+  height: 10px;
+  margin-right: -5px;
+}
+
+p {
+  margin-top: 0px;
+}
+
+.counter {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.book_titles {
+  margin-left: 30px;
+  margin-top: -10px;
+}
+
+.book_review {
+  margin-left: 30px;
+}

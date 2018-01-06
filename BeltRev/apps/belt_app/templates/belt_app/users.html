@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'belt_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+  </head>
+  <body>
+    <div>
+      <a href="/books">Home</a>
+      <a href="/books/add">Add Book and Review</a>
+      <a href="/logout">Logout</a>
+    </div>
+    <h3>User Alias: {{user_info.alias}}</h3>
+    <h4>Name: {{user_info.name}}</h4>
+    <h4>Email: {{user_info.email}}</h4>
+    <h4>Total reviews: {{total_reviews}}</h4>
+    <p></p>
+    <p>Posted reviews on the following books: </p>
+    {% for book in books %}
+    <a href="/books/{{book.id}}"><p class="book_titles">{{book.title}}</p></a>
+    {% endfor %}
+  </body>
+</html>

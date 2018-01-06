@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'belt_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+  </head>
+  <body>
+    <h3>Add a New Book Title and a Review</h3>
+    <a href="/books">Home</a>
+    <a href="/logout">Logout</a>
+    <form action="/books/enterbook" method="post">
+      {% csrf_token %}
+      Book Title: <input type="text" name="booktitle">
+      Author:
+        Choose from the list:
+        <select name="d_author" id="d_author">
+          {% for book in books %}
+          <option value="{{book.author}}">{{book.author}}</option>
+          {% endfor %}
+        </select>
+        Or add a new author:
+        <input type="text" name="author">
+        Review: <textarea name="review" id="review" value="reviews" cols="30" rows="10"></textarea>
+        Rating: <input type="number" name="stars" step="1" max="5" min="1" class="counter" value="1">
+        <input type="submit" name="submit" value="Add Book and Review">
+    </form>
+  </body>
+</html>

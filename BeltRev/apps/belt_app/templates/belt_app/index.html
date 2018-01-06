@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'belt_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+  </head>
+  <body>
+    <h2>Registration</h2>
+    <form action="/add" method="post">
+      {% csrf_token %}
+      Name: <input type="text" name="name">
+      Alias: <input type="text" name="alias">
+      Email: <input type="text" name="email">
+      Password: <input type="text" name="password">
+      Confirm pw: <input type="text" name="confirmpw">
+      <input type="submit" name="register" value="Register">
+    </form>
+    <h2>Login</h2>
+    <form action="/login" method="post">
+      {% csrf_token %}
+      Email: <input type="text" name="login_email">
+      Password: <input type="text" name="login_pwd">
+      <input type="submit" name="login" value="Login">
+    </form>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>

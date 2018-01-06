@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'belt_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+  </head>
+  <body>
+    <div>
+      <a href="/books/add">Add Book and Review</a>
+      <a href="/logout">Logout</a>
+      <h3>Welcome, {{user_info}}</h3>
+    </div>
+    <div class="book">
+      <h4>Recent Book Reviews:</h4>
+      {% for review in reviews%}
+      <div>
+        <a href="/books/{{review.book_id}}"><h4>{{review.title}}</h4></a>
+        <div class="book_review">
+          {% load mathfilters %}
+          {% with ''|center:review.rating as range %}
+            {% for _ in range %}
+            <img src="{% static 'belt_app/images/yellowstar.png' %}" alt="yellowstar.png"  class="disp_stars">
+            {% endfor %}
+          {% endwith %}
+          {% with "5" as whitestars %}
+            {% with whitestars|sub:review.rating as n %}
+              {% with ''|center:n as whiterange %}
+                {% for _ in whiterange %}
+                  <img src="{% static 'belt_app/images/whitestar.png' %}" alt="whitestar.png"  class="disp_stars">
+                {% endfor %}
+              {% endwith %}
+            {% endwith %}
+          {% endwith %}
+          <p><a href="/users/{{review.user_id}}">{{review.name}}</a> says: {{review.review}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="book">
+      <h4>Other Books with Reviews:</h4>
+      <div id="scroll3">
+        {% for book in books %}
+        <a href="/books/{{book.id}}">{{book.title}}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

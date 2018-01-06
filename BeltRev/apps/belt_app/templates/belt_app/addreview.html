@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'belt_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+  </head>
+  <body>
+    <div class="book">
+    <h3>{{book_info.title}}</h3>
+    <h5>Author: {{book_info.author}}</h5>
+    <h4>Reviews:</h4>
+      {% for review in reviews %}
+      <div class="review">
+        <div>Rating:
+          {% load mathfilters %}
+          {% with ''|center:review.rating as range %}
+            {% for _ in range %}
+            <img src="{% static 'belt_app/images/yellowstar.png' %}" alt="yellowstar.png"  class="disp_stars">
+            {% endfor %}
+          {% endwith %}
+          {% with "5" as whitestars %}
+            {% with whitestars|sub:review.rating as n %}
+              {% with ''|center:n as whiterange %}
+                {% for _ in whiterange %}
+                  <img src="{% static 'belt_app/images/whitestar.png' %}" alt="whitestar.png"  class="disp_stars">
+                {% endfor %}
+              {% endwith %}
+            {% endwith %}
+          {% endwith %}
+        </div>
+        <p><a href="/users/{{review.user_id}}">{{review.name}}</a> says: {{review.review}}</p>
+        <p>Posted on: {{review.created_at}}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="addreview">
+      <h4>Add a review:</h4>
+      <form action="/books/{{book_info.id}}/enterreview" method="post">
+        {% csrf_token %}
+        <textarea name="review" rows="8" cols="30" value="reviews"></textarea>
+        Rating: <input type="number" name="stars" step="1" max="5" min="1" class="counter" value="1">
+        <input type="submit" name="submit" value="Submit review">
+      </form>
+    </div>
+    <a href="/books">Home</a>
+    <a href="/logout">Logout</a>
+  </body>
+</html>
