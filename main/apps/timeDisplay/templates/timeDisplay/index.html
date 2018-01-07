@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <style>
+    div {
+      text-align: center;
+      display: block;
+      width: 600px;
+      font-family:courier ;
+    }
+  </style>
+  <body>
+    {% csrf_token %}
+    <div><h3>The current time and date:</h3></div>
+    <div class="line"><h1>{{date}}</h1></div>
+    <div class="line"><h1>{{time}}</h1></div>
+  </body>
+</html>

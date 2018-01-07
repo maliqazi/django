@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <style>
+    * {
+      font-family:courier
+    }
+    div {
+      width: 500px;
+      text-align: center;
+    }
+    h3 {
+      border-style: solid;
+    }
+  </style>
+  <body>
+    <div>
+      <h4>Random Word (attempt #{{counter}})</h4>
+      <h3>{{randomWord}}</h3>
+      <form action="/gen" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Generate">
+      </form>
+    </div>
+  </body>
+</html>
